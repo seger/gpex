@@ -1,0 +1,29 @@
+<div>
+    <!-- Find and display the selected item. -->
+    <div ng-repeat="entityDat in entityData | filter: { id: entityId }" ng-include="'include/item.html'"></div>
+    <!-- Find the related data for the item. -->
+    <div ng-repeat="entityRelDat in entityRelData | filter: { id: entityId }">
+        <!-- Iterate through the related data categories. -->
+        <accordion ng-repeat="rel in entityRelDat.rels" ng-show="rel[2].length>0">
+            <accordion-group is-open="status.isGrpOpen[$index]">
+                <accordion-heading>
+                    {{ rel[0] }} ({{ rel[2].length }}) <i class="pull-right glyphicon color-glyph" ng-class="{'glyphicon-chevron-down': status.isGrpOpen[$index], 'glyphicon-chevron-right': !status.isGrpOpen[$index]}"></i>
+                </accordion-heading>
+                <!-- Iterate through the related data items within the category. -->
+                <div class="rel-data-item" ng-repeat="item in rel[2]">
+                    <div ng-show="!isOpen">
+                        <div>
+                            <i class="glyphicon glyphicon-plus-sign color-glyph" ng-click="isOpen=true"></i> <a href="javascript:graph.addNodeViaPanel('{{ entityData[item].id }}')" tooltip data-toggle="tooltip" data-placement="top" title="Add this to graph">{{ entityData[item].name | shorten }}</a> <span class="total-rel">{{ entityRelData[item].total_rel }}</span>
+                        </div>
+                    </div>
+                    <div ng-show="isOpen">
+                        <div>
+                            <i class="glyphicon glyphicon-minus-sign color-glyph" ng-click="isOpen=false"></i> <a href="javascript:graph.addNodeViaPanel('{{ entityData[item].id }}')" tooltip data-toggle="tooltip" data-placement="top" title="Add this to graph">{{ entityData[item].name | shorten }}</a> <span class="total-rel">{{ entityRelData[item].total_rel }}</span>
+                        </div>
+                        <div class="hierarchy-placeholder"><i class="glyphicon glyphicon-plus-sign"></i> Related items...</div>
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>

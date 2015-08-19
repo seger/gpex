@@ -1,0 +1,175 @@
+body,
+.node-text {
+    font-family: "Helvetica Neue", sans-serif;
+    stroke-width: 0;
+}
+body {
+    font-size: 14px;
+    background-color: AliceBlue;
+}
+#main-heading {
+    height: 25px;
+    margin-left: 12px;
+}
+#legend {
+    margin: 13px 0 0 0;
+    font-size: 13px;
+}
+#search {
+    position: absolute;
+    top: 52px;
+    left: 12px;
+    z-index: 100;
+}
+#history {
+    position: absolute;
+    top: 52px;
+    left: 63px;
+    z-index: 99;
+}
+#sel-detail-panel {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    max-height: 99%;
+    width: 360px;
+    overflow-y: auto;
+}
+#default-content {
+    padding: 8px;
+    text-align: center;
+}
+#rel-type {
+    padding: 5px 0 3px 0;
+    color: White;
+    text-align: center;
+    background-color: #428bca;
+}
+#the-graph {
+    width: auto;
+    height: 92vh;
+    margin: 0 370px 0 5px;
+    border: 1px solid AliceBlue;
+    border-radius: 8px;
+    background-color: White;
+}
+.glyphicon {
+    cursor: pointer;
+}
+.color-glyph {
+    color: DarkSlateGray;
+}
+.close {
+    color: DarkSlateGray;
+    opacity: 1;
+}
+.ctrl-btn {
+    border: 1px solid DarkSlateGray;
+    border-radius: 3px;
+    color: GhostWhite;
+    background-color: DarkSlateGray;
+}
+.modal-title,
+#main-heading,
+#sel-panel-heading,
+#legend-heading {
+    font-variant: small-caps;
+}
+.legend-bar {
+    margin: 1px;
+    padding: 2px;
+    color: White;
+}
+.bar-disease {
+    background-color: #6db6ff;
+}
+.bar-gene {
+    background-color: #004949;
+}
+.bar-genotype {
+    background-color: #490092;
+}
+.bar-phenotype {
+    background-color: #b66dff;
+}
+.bar-variant {
+    background-color: #ff6db6;
+}
+.dropdown-menu li {
+    width: 320px;
+}
+.dropdown-menu #default-item {
+    margin-left: 10px;
+}
+.sel-item-heading {
+    color: #428bca;
+    text-align: center;
+}
+.panel-heading {
+    padding: 6px;
+    font-size: 16px;
+    text-align: center;
+}
+.panel-group {
+    margin-bottom: 0;
+}
+.panel-group > .panel > .panel-heading {
+    padding: 5px 5px 5px 14px;
+    text-align: left;
+    background-color: #fffbf5;
+}
+.panel-group > .panel > .panel-heading a {
+    color: DarkSlateGray;
+}
+.panel-group .panel-heading+.panel-collapse .panel-body {
+    border-top: 1px solid #fffbf5;
+    background-color: #fffbf5;
+}
+.rel-data-item {
+    padding-bottom: 3px;
+}
+.total-rel {
+	border-radius: 2px;
+	padding: 0 3px;
+	color: White;
+	background-color: #428bca;
+}
+.hierarchy-placeholder {
+    margin: 8px 0 12px 20px;
+    color: Gray;
+}
+.node {
+    stroke: Black;
+    stroke-width: 2px;
+}
+.node.fixed {
+    stroke: Red;
+}
+.node-text {
+    font-size: 13px;
+}
+.link {
+    opacity: 0.7;
+}
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    border: 1px solid DarkSlateGray;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background-color: #fffbf5;
+    box-shadow: DarkGray 0px 10px 34px -14px;
+}
+.pop-heading {
+    margin-top: 8px;
+    font-weight: bold;
+}
+.chart-data {
+    margin: 0 0 4px 0;
+    padding: 2px;
+    font-size: 11px;
+    color: White;
+    text-align: right;
+}

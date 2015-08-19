@@ -1,0 +1,108 @@
+<!doctype html>
+<html ng-app="MonarchApp">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Library -->
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/d3.v3.min.js"></script>
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/ui-bootstrap-tpls-0.13.0.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <script src="js/graph.js"></script>
+    <link href="css/app.css" rel="stylesheet">
+</head>
+
+<body ng-controller="AppCtrl">
+    <!-- Page heading and legend -->
+    <div class="row">
+        <div class="col-md-3">
+            <h4 id="main-heading">Genotype-Phenotype Explorer <span data-toggle="tooltip" data-placement="bottom" title="App help"><i class="glyphicon glyphicon-question-sign color-glyph" data-toggle="modal" data-target="#help" ng-click="helpModalPath='include/app-help.html'"></i></span> <span data-toggle="tooltip" data-placement="bottom" title="Configure"><i class="glyphicon glyphicon-wrench color-glyph" data-toggle="modal" data-target="#config"></i></span></h4>
+        </div>
+        <div id="legend" class="col-md-9" ng-show="legendIsOpen">
+            <span id="legend-heading"><strong>Legend</strong></span>&nbsp; &#9711; <em>Homo sapiens</em>&nbsp; &#9634; <em>Mus musculus</em>&nbsp; <span class="legend-bar bar-gene">Gene</span> <span class="legend-bar bar-genotype">Genotype</span> <span class="legend-bar bar-variant">Variant</span> <span class="legend-bar bar-phenotype">Phenotype</span> <span class="legend-bar bar-disease">Disease</span> <i class="glyphicon glyphicon-circle-arrow-left color-glyph" data-toggle="tooltip" data-placement="bottom" title="Hide legend" ng-click="legendIsOpen=false"></i>
+        </div>
+        <div id="legend" class="col-md-9" ng-show="!legendIsOpen">
+            <span id="legend-heading"><strong>Legend</strong></span>&nbsp; <i class="glyphicon glyphicon-circle-arrow-right color-glyph" data-toggle="tooltip" data-placement="bottom" title="Show legend" ng-click="legendIsOpen=true"></i>
+        </div>
+    </div>
+    <!-- Search dropdown menu -->
+    <div id="search" class="dropdown">
+        <button class="btn btn-default btn-sm dropdown-toggle ctrl-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="glyphicon glyphicon-search"></i>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="search">
+            <li ng-repeat="(key, value) in queries"><a href="javascript:graph.doSearch('{{ key }}')" ng-click="history=[]; selPanePath='include/default.html'">{{ value | shorten }}</a>
+            </li>
+        </ul>
+    </div>
+    <!-- History dropdown menu -->
+    <div id="history" class="dropdown">
+        <button class="btn btn-default btn-sm dropdown-toggle ctrl-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            History
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="history" ng-show="history.length==0">
+            <li id="default-item"><em>None.</em>
+            </li>
+        </ul>
+        <ul class="dropdown-menu" aria-labelledby="history" ng-show="history.length>0">
+            <li ng-repeat="item in history | unique" value="{{item}}"><a href="#">{{ item }}</a>
+            </li>
+        </ul>
+    </div>
+    <!-- Selection detail panel -->
+    <div id="sel-detail-panel">
+        <div class="panel panel-primary">
+            <div id="sel-panel-heading" class="panel-heading">Selection details</div>
+            <div data-ng-include="selPanePath"></div>
+        </div>
+    </div>
+    <!-- The graph -->
+    <div class="canvas" id="the-graph" the-graph></div>
+    <!-- Help modal -->
+    <div id="help" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-default">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Help</h4>
+                </div>
+                <div class="modal-body">
+                    <div data-ng-include="helpModalPath"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Config modal -->
+    <div id="config" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Configuration</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input type="checkbox" id="dxInPopup" ng-model="dxInPopup"> Show item description in popup
+                    </p>
+                    <p>
+                        <input type="checkbox" id="heatedEdges"> Apply color scale to edges
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tooltip -->
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</body>
+
+</html>

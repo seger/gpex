@@ -1,0 +1,14 @@
+<h4 class="sel-item-heading">{{ entityDat.name }}</h4>
+<accordion ng-show="!dxInPopup">
+    <accordion-group is-open="status.itemIsOpen[entityDat.id]">
+        <accordion-heading>
+            Description <i class="pull-right glyphicon color-glyph" ng-class="{'glyphicon-chevron-down': status.itemIsOpen[entityDat.id], 'glyphicon-chevron-right': !status.itemIsOpen[entityDat.id]}"></i>
+        </accordion-heading>
+        <div>
+            <strong><em>{{ entityDat.species }}</em> {{ entityDat.data_type }}</strong>
+        </div>
+        <div>
+            {{ entityDat.description }} <a target="_blank" href="{{ entityDat.ref }}">[Monarch]</a>
+        </div>
+    </accordion-group>
+</accordion>

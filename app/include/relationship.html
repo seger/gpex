@@ -1,0 +1,27 @@
+<div>
+    <!-- Find the selected relationship. -->
+    <div ng-repeat="relDat in relData | filter: { id: relId }">
+        <!-- Find and display the source entity. -->
+        <div ng-repeat="entityDat in entityData | filter: { id: relDat.source }" ng-include="'include/item.html'"></div>
+        <!-- Display the relationship type once. -->
+        <div id="rel-type" ng-show="$first">
+            <em>{{ relDat.rel_type }}</em>
+        </div>
+        <!-- Find and display the target entity. -->
+        <div ng-repeat="entityDat in entityData | filter: { id: relDat.target }" ng-include="'include/item.html'"></div>
+    </div>
+    <!-- Publication list. -->
+    <div ng-repeat="relDat in relData | filter: { id: relId }">
+        <accordion>
+            <accordion-group is-open="pubStatus.open">
+                <accordion-heading>
+                    Sources ({{ relDat.refs.length }}) <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': pubStatus.open, 'glyphicon-chevron-right': !pubStatus.open}"></i>
+                </accordion-heading>
+                <p ng-repeat="ref in relDat.refs">
+                    {{ refData[ref].title }}
+                    <span ng-show="refData[ref].pmid!=null"><a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/{{ refData[ref].pmid }}">[PubMed]</a></span>
+                </p>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>
